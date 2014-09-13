@@ -44,6 +44,34 @@ List of objects
 
                 Then I verify that the number of authors are "2"
 
+
+Filter specific object
+
+                [
+                    {
+                            "id": 1000,
+                            "name": "Kent Beck"
+                    },
+                    {
+                            "id": 1001,
+                            "name": "Martin Fowler"
+                    },
+                    {
+                            "id": 1002,
+                            "name": "Eric Evans"
+                    }
+                ]
+
+                Then I filter the authors with "id" "1001"
+                      | id      | name          |
+                      | 1001    | Martin Fowler |
+
+                Then I filter the authors with "id" in "1001,1002"
+                      | id      | name          |
+                      | 1001    | Martin Fowler |
+                      | 1002    | Eric Evans    |
+
+
 Values in object
 
                 {
