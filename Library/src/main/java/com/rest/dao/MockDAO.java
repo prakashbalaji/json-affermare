@@ -13,5 +13,6 @@ public class MockDAO {
     public static final Author FOWLER = new Author(123, "Fowler", asList(OFFICE, HOME));
     public static final Author BECK = new Author(124, "Beck", EMPTY_LIST);
     public static final Book TDD = new Book("abc123456", "Test driven development", BECK);
+    public static final Book REFACTORING = new Book("def123456", "Refactoring", FOWLER);
 
 }

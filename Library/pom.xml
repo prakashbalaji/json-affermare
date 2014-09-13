@@ -61,6 +61,12 @@
             <groupId>DropwizardREST</groupId>
             <artifactId>json-affermare</artifactId>
             <version>1.0-SNAPSHOT</version>
+            <exclusions>
+                <exclusion>
+                    <groupId>junit</groupId>
+                    <artifactId>junit</artifactId>
+                </exclusion>
+            </exclusions>
         </dependency>
 
 

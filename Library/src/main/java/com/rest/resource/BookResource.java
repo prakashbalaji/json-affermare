@@ -8,9 +8,12 @@ import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
+import static com.rest.dao.MockDAO.REFACTORING;
 import static com.rest.dao.MockDAO.TDD;
+import static java.util.Arrays.asList;
 
 @Path("/books")
 @Produces(MediaType.APPLICATION_JSON)
@@ -18,6 +21,12 @@ public class BookResource {
 
 
     public BookResource() {
+    }
+
+    @GET
+    @Path("/all.json")
+    public List<Book> allBooks() {
+        return asList(TDD, REFACTORING);
     }
 
     @GET

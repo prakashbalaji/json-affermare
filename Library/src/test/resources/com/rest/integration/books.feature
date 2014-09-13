@@ -21,3 +21,11 @@ Feature: Books
   Scenario: Verify a object does not have keys
     Then I make a GET to "books/123.json"
     Then I verify that book does not have "tax"
+
+
+  Scenario: Verify associated object along with main object
+    Then I make a GET to "books/all.json"
+    Then I verify that the following books are present
+      | isbn      | name                    | author.name |
+      | abc123456 | Test driven development | Beck        |
+      | def123456 | Refactoring             | Fowler      |

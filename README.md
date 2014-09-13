@@ -44,6 +44,34 @@ List of objects
 
                 Then I verify that the number of authors are "2"
 
+List of objects with association
+
+                [
+                    {
+                        "isbn": "isbn123",
+                        "name": "Test driven development",
+                        "author":
+                        {
+                            "id": 1000,
+                            "name": "Kent Beck"
+                        }
+                    },
+                    {
+                        "isbn": "isbn124",
+                        "name": "Refactoring",
+                        "author":
+                        {
+                            "id": 1001,
+                            "name": "Martin Fowler"
+                        }
+                    }
+                ]
+
+                Then I verify that the following books are present
+                      | isbn        | name                    |   author.id | author.name      |
+                      | isbn123     | Test driven development |     1000    | Kent Beck        |
+                      | isbn124     | Refactoring             |     1001    | Martin Fowler    |
+
 
 Filter specific object
 
