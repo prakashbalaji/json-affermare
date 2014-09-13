@@ -11,6 +11,20 @@ Feature: Authors
       | 123 | Fowler |
       | 124 | Beck   |
 
+  Scenario: Filter collection with one condition
+    Then I make a GET to "authors/all.json"
+    Then I filter the authors with "id" "123"
+      | id  | name   |
+      | 123 | Fowler |
+
+  Scenario: Filter collection with in clause
+    Then I make a GET to "authors/all.json"
+    Then I filter the authors with "id" in "123,124"
+      | id  | name   |
+      | 123 | Fowler |
+      | 124 | Beck   |
+
+
   Scenario: Verify collection for items not present
     Then I make a GET to "authors/all.json"
     Then I verify that the following authors are not present

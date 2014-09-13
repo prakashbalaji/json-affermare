@@ -56,6 +56,7 @@
             <scope>test</scope>
         </dependency>
 
+
         <dependency>
             <groupId>DropwizardREST</groupId>
             <artifactId>json-affermare</artifactId>

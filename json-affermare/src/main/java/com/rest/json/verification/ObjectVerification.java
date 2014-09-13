@@ -10,8 +10,8 @@ import java.util.Map;
 
 import static com.jayway.jsonpath.JsonPath.read;
 import static com.rest.response.ResponseStorage.response;
-import static junit.framework.Assert.fail;
 import static junitx.framework.Assert.assertEquals;
+import static junitx.framework.Assert.fail;
 import static org.hamcrest.CoreMatchers.is;
 import static org.hamcrest.MatcherAssert.assertThat;
 

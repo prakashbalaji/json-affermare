@@ -43,4 +43,15 @@ public class ArrayVerification {
     public void I_verify_that_object_has_many_objects(String selector, DataTable table) throws Throwable {
         assertCollection("root."+selector, table);
     }
+
+    @Then("^I filter the .+ with \"([^\"]*)\" \"([^\"]*)\"$")
+    public void I_filter_the_collection_with_specific_condition(String key, String value, DataTable table) throws Throwable {
+        assertCollectionWithFilter("root", table, key, value);
+    }
+
+
+    @Then("^I filter the .+ with \"([^\"]*)\" in \"([^\"]*)\"$")
+    public void I_filter_the_authors_with_in(String key, String values, DataTable table) throws Throwable {
+        assertCollectionWithInFilter("root", table, key, values);
+    }
 }
