@@ -1,6 +1,6 @@
 package com.rest.steps;
 
-import com.rest.request.RestClient;
+import com.rest.request.jersey.JerseyClient;
 import cucumber.api.java.en.Given;
 import cucumber.api.java.en.Then;
 
@@ -17,7 +17,7 @@ public class ApplicationSpecificSteps {
 
     @Then("^I start server$")
     public void I_start_server() throws Throwable {
-        RestClient.initialize(String.format("http://localhost:%d/", RULE.getLocalPort()));
+        JerseyClient.initialize(String.format("http://localhost:%d/", RULE.getLocalPort()));
     }
 
 

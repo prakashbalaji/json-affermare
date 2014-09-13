@@ -13,7 +13,7 @@ Feature: Authors
 
   Scenario: Filter collection with one condition
     Then I make a GET to "authors/all.json"
-    Then I filter the authors with "id" "123"
+    Then I filter the authors with "id" is "123"
       | id  | name   |
       | 123 | Fowler |
 

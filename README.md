@@ -90,7 +90,7 @@ Filter specific object
                     }
                 ]
 
-                Then I filter the authors with "id" "1001"
+                Then I filter the authors with "id" is "1001"
                       | id      | name          |
                       | 1001    | Martin Fowler |
 

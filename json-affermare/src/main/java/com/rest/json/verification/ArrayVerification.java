@@ -44,7 +44,7 @@ public class ArrayVerification {
         assertCollection("root."+selector, table);
     }
 
-    @Then("^I filter the .+ with \"([^\"]*)\" \"([^\"]*)\"$")
+    @Then("^I filter the .+ with \"([^\"]*)\" is \"([^\"]*)\"$")
     public void I_filter_the_collection_with_specific_condition(String key, String value, DataTable table) throws Throwable {
         assertCollectionWithFilter("root", table, key, value);
     }
