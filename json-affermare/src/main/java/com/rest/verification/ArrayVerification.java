@@ -1,4 +1,4 @@
-package com.rest.json.verification;
+package com.rest.verification;
 
 import com.rest.json.parser.RowIterator;
 import com.rest.json.parser.TableIterator;

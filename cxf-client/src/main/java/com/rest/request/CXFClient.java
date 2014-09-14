@@ -1,4 +1,4 @@
-package com.rest.request.cxf;
+package com.rest.request;
 
 import com.rest.response.CXFClientResponse;
 import com.rest.response.Response;

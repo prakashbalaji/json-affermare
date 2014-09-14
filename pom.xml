@@ -11,7 +11,15 @@
     <modules>
         <module>json-affermare</module>
         <module>Library</module>
+        <module>client-driver</module>
+        <module>jersey-client</module>
+        <module>cxf-client</module>
     </modules>
+
+    <properties>
+        <cucumber.version>1.1.5</cucumber.version>
+        <junit.version>4.10</junit.version>
+    </properties>
 
     <build>
         <plugins>

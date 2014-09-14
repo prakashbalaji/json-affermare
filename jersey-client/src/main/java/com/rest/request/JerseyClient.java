@@ -1,4 +1,4 @@
-package com.rest.request.jersey;
+package com.rest.request;
 
 import com.rest.response.JerseyClientResponse;
 import com.rest.response.Response;

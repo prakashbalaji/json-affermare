@@ -1,4 +1,4 @@
-package com.rest.json.verification;
+package com.rest.verification;
 
 import com.rest.model.CustomDataTable;
 import cucumber.api.DataTable;

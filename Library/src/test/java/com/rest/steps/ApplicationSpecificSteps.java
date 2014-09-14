@@ -1,6 +1,6 @@
 package com.rest.steps;
 
-import com.rest.request.jersey.JerseyClient;
+import com.rest.request.JerseyClient;
 import cucumber.api.java.en.Given;
 import cucumber.api.java.en.Then;
 
