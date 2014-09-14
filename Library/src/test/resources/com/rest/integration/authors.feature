@@ -8,8 +8,8 @@ Feature: Authors
     Then I make a GET to "authors/all.json"
     Then I verify that the following authors are present
       | id  | name   |
-      | 123 | Fowler |
       | 124 | Beck   |
+      | 123 | Fowler |
 
   Scenario: Filter collection with one condition
     Then I make a GET to "authors/all.json"
@@ -31,6 +31,7 @@ Feature: Authors
       | id  | name  |
       | 125 | Vijay |
 
+  #TODO :Failing scenario
   #Scenario: Verify collection for items not present
   #  Then I make a GET to "authors/all.json"
   #  Then I verify that the following authors are not present
@@ -65,4 +66,31 @@ Feature: Authors
       | home   | 123456789 |
 
 
+  Scenario: Verify response code
+    Then I make a GET to "authors/all.json"
+    Then I verify that the status is "OK"
 
+  Scenario: Verify Error response code
+    Then I make a GET to "authors/error.json"
+    Then I verify that the status is "PRECONDITION_FAILED"
+
+
+  Scenario: Verify collection for the order of items
+    Then I make a GET to "authors/all.json"
+    Then I verify that the following authors are present in the same order
+      | id  | name   |
+      | 123 | Fowler |
+      | 124 | Beck   |
+
+  Scenario: Verify collection the list of values
+    Then I make a GET to "authors/names.json"
+    Then I verify the list of author names are present
+      | Fowler |
+      | Beck   |
+    Then I make a GET to "authors/ids.json"
+    Then I verify the list of author ids are present
+      | 124 |
+      | 123 |
+    Then I verify the list of author ids are present in the same order
+      | 123 |
+      | 124 |

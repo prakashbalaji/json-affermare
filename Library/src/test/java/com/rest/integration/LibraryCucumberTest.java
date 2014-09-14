@@ -10,7 +10,7 @@ import org.junit.runner.RunWith;
 
 @RunWith(Cucumber.class)
 @Cucumber.Options(format = {"html:target/cucumber-html-report", "json:target/cucumber-json-report.json"},
-         glue = {"com.rest.steps", "com.rest.request.jersey", "com.rest.json.verification" })
+          glue = {"com.rest.steps", "com.rest.request.jersey", "com.rest.json.verification" })
 public class LibraryCucumberTest {
 
 

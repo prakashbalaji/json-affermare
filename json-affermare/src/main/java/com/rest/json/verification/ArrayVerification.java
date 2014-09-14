@@ -9,9 +9,19 @@ import static com.rest.json.parser.AssertHelper.*;
 
 public class ArrayVerification {
 
-    @Then("^I verify that the collection \"([^\"]*)\" contains$")
+    /*@Then("^I verify that the collection \"([^\"]*)\" contains$")
     public void I_verify_that_the_collection(String selector, DataTable table) throws Throwable {
         assertCollection(selector, table);
+    }*/
+
+    @Then("^I verify the list of .+ in the same order$")
+    public void I_verify_the_primitive_collection_with_order(DataTable table) throws Throwable {
+        assertCollectionAsPrimitiveWithOrder("root", table);
+    }
+
+    @Then("^I verify the list of .+ are present$")
+    public void I_verify_the_primitive_collection(DataTable table) throws Throwable {
+        assertCollectionAsPrimitive("root", table);
     }
 
     @Then("^I verify that the following .+ are present$")
@@ -53,5 +63,10 @@ public class ArrayVerification {
     @Then("^I filter the .+ with \"([^\"]*)\" in \"([^\"]*)\"$")
     public void I_filter_the_authors_with_in(String key, String values, DataTable table) throws Throwable {
         assertCollectionWithInFilter("root", table, key, values);
+    }
+
+    @Then("^I verify that the following .+ are present in the same order$")
+    public void I_verify_that_the_following_list_are_present_in_the_same_order(DataTable table) throws Throwable {
+        assertCollectionWithOrder("root", table);
     }
 }

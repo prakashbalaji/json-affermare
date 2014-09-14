@@ -23,6 +23,24 @@ public class AssertHelper {
         new CustomDataTable(table).matches(jsonObjects);
     }
 
+    public static void assertCollectionAsPrimitive(String selector, DataTable table) throws Exception {
+        Object json = new JSONTokener(response.json()).nextValue();
+        List<Object> objects = new JsonProcessor().getJsonPrimitiveCollection(selector, json);
+        new CustomDataTable(table).matchesPrimitive(objects);
+    }
+
+    public static void assertCollectionAsPrimitiveWithOrder(String selector, DataTable table) throws Exception {
+        Object json = new JSONTokener(response.json()).nextValue();
+        List<Object> objects = new JsonProcessor().getJsonPrimitiveCollection(selector, json);
+        new CustomDataTable(table).matchesPrimitiveWithOrder(objects);
+    }
+
+    public static void assertCollectionWithOrder(String selector, DataTable table) throws Exception {
+        Object json = new JSONTokener(response.json()).nextValue();
+        List<JSONObject> jsonObjects = new JsonProcessor().selectJsonObjects(selector, json);
+        new CustomDataTable(table).matchesOrder(jsonObjects);
+    }
+
     public static void assertCollectionWithFilter(String selector, DataTable table, String key, String value) throws Exception {
         Object json = new JSONTokener(response.json()).nextValue();
         List<JSONObject> jsonObjects = new JsonProcessor().filterAndSelectJsonObjects(selector, json, key, value);

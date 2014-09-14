@@ -1,5 +1,6 @@
 package com.rest.dao;
 
+import com.rest.model.ApplicationError;
 import com.rest.model.Author;
 import com.rest.model.Book;
 import com.rest.model.Phone;
@@ -14,5 +15,9 @@ public class MockDAO {
     public static final Author BECK = new Author(124, "Beck", EMPTY_LIST);
     public static final Book TDD = new Book("abc123456", "Test driven development", BECK);
     public static final Book REFACTORING = new Book("def123456", "Refactoring", FOWLER);
+
+    public static final ApplicationError MISSING_NAME = new ApplicationError("name", "please enter the name");
+    public static final ApplicationError MISSING_PHONE = new ApplicationError("phone", "please enter the phone number");
+
 
 }

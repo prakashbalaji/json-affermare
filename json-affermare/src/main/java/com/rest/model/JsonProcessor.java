@@ -39,6 +39,33 @@ public class JsonProcessor {
         return toBeReturned;
     }
 
+    public List<Object> getJsonPrimitiveCollection(String selector, Object json) throws JSONException {
+        List<Object> toBeReturned = new ArrayList<Object>();
+        String restOfSelectors = restOfSelectors(selector);
+        selector = firstSelector(selector);
+        if (!selector.isEmpty()) {
+            if (json instanceof JSONArray)
+                for (JSONObject object : asList((JSONArray) json)) {
+                    toBeReturned.addAll(getJsonPrimitiveCollection(restOfSelectors, object.get(selector)));
+                }
+            else
+                toBeReturned.addAll(getJsonPrimitiveCollection(restOfSelectors, ((JSONObject) json).get(selector)));
+        } else {
+            toBeReturned.addAll(Arrays.asList(json));
+        }
+
+        return getPrimitiveCollection(toBeReturned);
+    }
+
+    private List<Object> getPrimitiveCollection(List<Object> primitiveCollectionJsonArray) throws JSONException {
+        List<Object> result = new ArrayList<>();
+        for (Object jsonArray : primitiveCollectionJsonArray) {
+            for (int i = 0; i < ((JSONArray) jsonArray).length(); i++)
+                result.add(((JSONArray) jsonArray).get(i));
+        }
+        return result;
+    }
+
     public List<JSONObject> filterAndSelectJsonObjects(String selector, Object json, String key, String value) throws JSONException {
         return filter(selectJsonObjects(selector,json), d -> getValueFromJsonObject(d,key).toString().equals(value));
     }

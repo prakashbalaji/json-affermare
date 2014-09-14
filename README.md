@@ -12,6 +12,15 @@ Usage
 Examples
 -----
 
+
+Verify HTTP Status
+
+
+                Then I verify that the status is "OK"
+
+                Then I verify that the status is "PRECONDITION_FAILED"
+
+
 Empty object
 
                 {}
@@ -22,7 +31,20 @@ Empty list
 
                 []
 
-                I verify that no authors are present
+                Then I verify that no authors are present
+
+List of primitive collection
+
+                ["Martin Fowler", "Kent Beck"]
+
+                Then I verify the list of author names are present
+                      | Kent Beck        |
+                      | Martin Fowler    |
+
+                Then I verify the list of author names are present in the same order
+                      | Martin Fowler    |
+                      | Kent Beck        |
+
 
 List of objects
 
@@ -37,14 +59,22 @@ List of objects
                     }
                 ]
 
+                Then I verify that the number of authors are "2"
+
                 Then I verify that the following authors are present
+                      | id      | name          |
+                      | 1001    | Martin Fowler |
+                      | 1000    | Kent Beck     |
+
+                Then I verify that the following authors are present in the same order
                       | id      | name          |
                       | 1000    | Kent Beck     |
                       | 1001    | Martin Fowler |
 
-                Then I verify that the number of authors are "2"
 
-List of objects with association
+
+
+List of objects with one to one association
 
                 [
                     {

@@ -13,7 +13,7 @@ public class CXFClientResponse implements Response {
         WebClient webClient = WebClient.create(baseUrl);
         webClient.accept(MediaType.APPLICATION_JSON);
         response = webClient.path(path).get();
-        json = response.readEntity(String.class);
+        json = null;//response.readEntity(String.class);
     }
 
     @Override
