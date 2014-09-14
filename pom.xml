@@ -10,7 +10,7 @@
     <version>1.0-SNAPSHOT</version>
     <modules>
         <module>json-affermare</module>
-        <module>Library</module>
+        <module>dropwizard-sample-application</module>
         <module>client-driver</module>
         <module>jersey-client</module>
         <module>cxf-client</module>

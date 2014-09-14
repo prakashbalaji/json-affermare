@@ -5,6 +5,12 @@ Cucumber JVM add on library to verify JSON.
 
 To add description
 
+Architecture
+=============
+
+![Image of Architecture]
+(arch.png)
+
 Usage
 =========
 

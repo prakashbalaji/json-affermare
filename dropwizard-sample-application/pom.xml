@@ -10,7 +10,7 @@
     <modelVersion>4.0.0</modelVersion>
 
 
-    <artifactId>Library</artifactId>
+    <artifactId>dropwizard-sample-application</artifactId>
 
     <properties>
         <dropwizard.version>0.7.0</dropwizard.version>
