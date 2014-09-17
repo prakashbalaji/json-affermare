@@ -18,7 +18,6 @@ Usage
 Examples
 -----
 
-
 Verify HTTP Status
 
 
