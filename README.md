@@ -14,17 +14,52 @@ Architecture
 Usage
 =========
 
-
-Examples
+HTTP request Examples
 -----
 
-Verify HTTP Status
+The following examples shows the various http requests syntax. There are support for GET, PUT, POST and DELETE verbs with
+query params and json payload.
+
+                Then I make a GET to "authors/all.json"
+
+                Then I make a GET to "authors/all.json" with params
+                    |id     | name      |
+                    |123    | Kent Beck |
+
+                Then I make a PUT to "books/increment_count.json"
+
+                Then I make a PUT to "authors/1000.json" with data
+                     |   {                          |
+                     |       "id": 1000,            |
+                     |       "name": "Kent Beck"    |
+                     |   }                          |
+
+                Then I make a POST to "books/create.json"
+
+                Then I make a POST to "authors/1000.json" with data
+                     |   {                          |
+                     |       "id": 1000,            |
+                     |       "name": "Kent Beck"    |
+                     |   }                          |
+
+                Then I make a DELETE to "authors/1000.json"
+
+
+Response status verification Examples
+-----
+
+The following examples shows the various http response status code verification.
 
 
                 Then I verify that the status is "OK"
 
                 Then I verify that the status is "PRECONDITION_FAILED"
 
+
+JSON verification Examples
+-----
+
+The following examples shows various options with asserting the json response.
 
 Empty object
 
