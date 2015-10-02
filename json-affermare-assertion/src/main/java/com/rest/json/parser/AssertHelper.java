@@ -17,31 +17,47 @@ import static com.jayway.jsonassert.JsonAssert.with;
 import static com.rest.response.ResponseStorage.response;
 import static org.hamcrest.CoreMatchers.is;
 import static org.junit.Assert.assertThat;
+import static org.junit.Assert.assertTrue;
 import static org.junit.Assert.fail;
 
 public class AssertHelper {
 
+    public static void assertCollectionCount(Integer actualJsonLength ,Integer expectedResponseLength){
+        boolean isExpectedJsonRowsLesserOrEqualToActual = actualJsonLength >= expectedResponseLength;
+        try{
+            assertTrue(isExpectedJsonRowsLesserOrEqualToActual);
+        }catch (AssertionError error){
+            fail("Expected Response Json rows greater than Actual response Json");
+        }
+    }
+
     public static void assertCollection(String selector, DataTable table) throws Exception {
         List<JSONObject> parsedJsonObjects = new JsonParser(response.json()).parse();
         List<JSONObject> flattenedJsonObjects = new JsonFlattener(parsedJsonObjects, table).flatten();
+        int expectedResponseLengthWithoutHeader = table.raw().size() - 1;
+        assertCollectionCount(flattenedJsonObjects.size(), expectedResponseLengthWithoutHeader);
         new CustomDataTable(table).matches(flattenedJsonObjects);
     }
 
     public static void assertCollectionAsPrimitive(String selector, DataTable table) throws Exception {
         Object json = new JSONTokener(response.json()).nextValue();
         List<Object> objects = new JsonProcessor().getJsonPrimitiveCollection(selector, json);
+        assertCollectionCount(objects.size(),table.raw().size());
         new CustomDataTable(table).matchesPrimitive(objects);
     }
 
     public static void assertCollectionAsPrimitiveWithOrder(String selector, DataTable table) throws Exception {
         Object json = new JSONTokener(response.json()).nextValue();
         List<Object> objects = new JsonProcessor().getJsonPrimitiveCollection(selector, json);
+        assertCollectionCount(objects.size(),table.raw().size());
         new CustomDataTable(table).matchesPrimitiveWithOrder(objects);
     }
 
     public static void assertCollectionWithOrder(String selector, DataTable table) throws Exception {
         Object json = new JSONTokener(response.json()).nextValue();
         List<JSONObject> jsonObjects = new JsonProcessor().selectJsonObjects(selector, json);
+        int expectedResponseLengthWithoutHeader = table.raw().size() - 1;
+        assertCollectionCount(jsonObjects.size(),expectedResponseLengthWithoutHeader);
         new CustomDataTable(table).matchesOrder(jsonObjects);
     }
 
@@ -89,14 +105,5 @@ public class AssertHelper {
             }
         }
     }
-
-
-
-
-
-
-
-
-
 
 }
