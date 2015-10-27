@@ -52,20 +52,7 @@ public class JerseyClient {
 
     @Then("^I make a PUT to \"([^\"]*)\" with header \"([^\"]*)\" with body$")
     public void I_make_a_PUT_to_with_body_and_headers(String path, String headers, DataTable table) throws Throwable {
-        String[] headerTokens = headers.split(",");
-        Map<String, String> headersMap = new HashMap<>();
-        for (String token : headerTokens) {
-            String[] headerKeyValue = token.split("=");
-            if(headerKeyValue.length == 2) {
-                headersMap.put(headerKeyValue[0], headerKeyValue[1]);
-            }
-        }
-        WebResource.Builder putResourceBuilder = new Client().resource(BASE_URL + path)
-                .type(APPLICATION_JSON_TYPE);
-
-        for (Map.Entry<String, String> entry : headersMap.entrySet()) {
-            putResourceBuilder.header(entry.getKey(),entry.getValue());
-        }
+        WebResource.Builder putResourceBuilder = getWebResourceBuilderWithHeaders(path, headers);
 
         Response response = new JerseyClientResponse(putResourceBuilder.put(ClientResponse.class, payload(table)));
         ResponseStorage.initialize(response);
@@ -87,20 +74,7 @@ public class JerseyClient {
 
     @Then("^I make a POST to \"([^\"]*)\" with header \"([^\"]*)\" with body$")
     public void I_make_a_POST_to_with_body_and_headers(String path, String headers, DataTable table) throws Throwable {
-        String[] headerTokens = headers.split(",");
-        Map<String, String> headersMap = new HashMap<>();
-        for (String token : headerTokens) {
-            String[] headerKeyValue = token.split("=");
-            if(headerKeyValue.length == 2) {
-                headersMap.put(headerKeyValue[0], headerKeyValue[1]);
-            }
-        }
-        WebResource.Builder postResourceBuilder = new Client().resource(BASE_URL + path)
-                .type(APPLICATION_JSON_TYPE);
-
-        for (Map.Entry<String, String> entry : headersMap.entrySet()) {
-            postResourceBuilder.header(entry.getKey(),entry.getValue());
-        }
+        WebResource.Builder postResourceBuilder = getWebResourceBuilderWithHeaders(path, headers);
         Response response = new JerseyClientResponse(postResourceBuilder.post(ClientResponse.class, payload(table)));
         ResponseStorage.initialize(response);
     }
@@ -124,6 +98,30 @@ public class JerseyClient {
         return result;
     }
 
+    private Map<String, String> getHeadersMap(String headers) {
+        String[] headerTokens = headers.split(",");
+        Map<String, String> headersMap = new HashMap<>();
+        for (String token : headerTokens) {
+            String[] headerKeyValue = token.split("=");
+            if(headerKeyValue.length == 2) {
+                headersMap.put(headerKeyValue[0], headerKeyValue[1]);
+            }
+            else {
+                throw new IllegalArgumentException("Please split the key and value of header using \'=\'. Example: w=x,y=z");
+            }
+        }
+        return headersMap;
+    }
+
+    private WebResource.Builder getWebResourceBuilderWithHeaders(String path, String headers) {
+        Map<String, String> headersMap = getHeadersMap(headers);
+        WebResource.Builder resourceBuilder = new Client().resource(BASE_URL + path)
+                .type(APPLICATION_JSON_TYPE);
+        for (Map.Entry<String, String> entry : headersMap.entrySet()) {
+            resourceBuilder.header(entry.getKey(), entry.getValue());
+        }
+        return resourceBuilder;
+    }
 
     public static void initialize(String baseUrl) {
         BASE_URL = baseUrl;
