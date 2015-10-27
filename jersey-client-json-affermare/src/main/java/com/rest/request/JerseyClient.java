@@ -106,6 +106,9 @@ public class JerseyClient {
             if(headerKeyValue.length == 2) {
                 headersMap.put(headerKeyValue[0], headerKeyValue[1]);
             }
+            else {
+                throw new IllegalArgumentException("Please split the key and value of header using \'=\'. Example: w=x,y=z");
+            }
         }
         return headersMap;
     }
